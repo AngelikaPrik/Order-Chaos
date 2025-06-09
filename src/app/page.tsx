@@ -1,6 +1,6 @@
 'use client'
 
-import { login } from '@/shared/lib/actions/auth'
+import { login, logout } from '@/shared/lib/actions/auth'
 import { Button } from '@/shared/atoms/Button'
 
 export default function Home() {
@@ -9,6 +9,9 @@ export default function Home() {
       <h2>Вы не зарегистирированы?</h2>
       <Button type="button" onClick={() => login()}>
         <p>Войти</p>
+      </Button>
+      <Button type="button" onClick={() => logout()}>
+        <p>Выйти</p>
       </Button>
     </section>
   )
