@@ -1,18 +1,21 @@
-'use client'
+'use server'
+import { auth } from '@/auth'
+import { LogInButton } from '@/shared/atoms/LogInOutButton'
+import { redirect } from 'next/navigation'
 
-import { login, logout } from '@/shared/lib/actions/auth'
-import { Button } from '@/shared/atoms/Button'
+const Home = async () => {
+  const session = await auth()
 
-export default function Home() {
+  if (session?.user) {
+    redirect('/profile')
+  }
+
   return (
     <section>
       <h2>Вы не зарегистирированы?</h2>
-      <Button type="button" onClick={() => login()}>
-        <p>Войти</p>
-      </Button>
-      <Button type="button" onClick={() => logout()}>
-        <p>Выйти</p>
-      </Button>
+      <LogInButton />
     </section>
   )
 }
+
+export default Home
