@@ -12,6 +12,6 @@ export const { auth, handlers, signIn, signOut } = NextAuth({
   ],
   adapter: PrismaAdapter(prisma),
   session: {
-    strategy: 'database', // важно: по умолчанию JWT, а нам нужна база
+    strategy: 'database',
   },
 })
