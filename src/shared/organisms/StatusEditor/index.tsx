@@ -11,7 +11,7 @@ export const StatusEditor = ({ initialStatus }: { initialStatus: string }) => {
 
     const res = await fetch('/api/user/update', {
       method: 'POST',
-      body: JSON.stringify({ bio: status }),
+      body: JSON.stringify({ status }),
       headers: { 'Content-Type': 'application/json' },
     })
 
