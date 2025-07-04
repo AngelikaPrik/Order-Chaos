@@ -1,6 +1,6 @@
 import { auth } from '@/auth'
 import { StatusEditor } from '@/shared/organisms/StatusEditor'
-import { LogOutButton } from '@/shared/atoms/LogInOutButton'
+import { LogOutButton } from '@/shared/atoms/LogOutButton'
 import Image from 'next/image'
 import { prisma } from '@/prisma'
 

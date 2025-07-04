@@ -1,6 +1,6 @@
 'use server'
 import { auth } from '@/auth'
-import { LogInButton } from '@/shared/atoms/LogInOutButton'
+import { LogInButton } from '@/shared/atoms/LogInButton'
 import { redirect } from 'next/navigation'
 
 const Home = async () => {
