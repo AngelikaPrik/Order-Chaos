@@ -1,0 +1,130 @@
+@use 'sass:map';
+@use 'sass:meta';
+@use 'sass:list';
+@use 'functions' as *;
+
+$breakpoints: (
+  'mobile': '(min-width: 220px) and (max-width: 540px)',
+  'tablet': '(min-width: 541px) and (max-width: 1024px)',
+  'tablet-pro':
+    '(min-width: 1024px) and (max-width: 1370px) and (orientation: portrait)',
+  'laptop':
+    '(min-width: 1024px) and (max-width: 1370px) and (orientation: landscape)',
+);
+
+@mixin breakpoint($size) {
+  @media screen and #{map.get($breakpoints, $size)} {
+    @content;
+  }
+}
+
+@mixin laptop() {
+  @include breakpoint('laptop') {
+    @content;
+  }
+}
+
+@mixin tablet() {
+  @include breakpoint('tablet') {
+    @content;
+  }
+}
+
+@mixin tablet-pro() {
+  @include breakpoint('tablet-pro') {
+    @content;
+  }
+}
+
+@mixin mobile() {
+  @include breakpoint('mobile') {
+    @content;
+  }
+}
+
+@mixin responsive-property($property, $normal, $laptop, $tablet, $mobile) {
+  @if $normal {
+    #{$property}: wv-1600($normal);
+  }
+
+  @if $laptop {
+    @include laptop {
+      #{$property}: wv-1200($laptop);
+    }
+  }
+
+  @if $tablet {
+    @include tablet-pro {
+      #{$property}: wv-768($tablet);
+    }
+
+    @include tablet {
+      #{$property}: wv-768($tablet);
+    }
+  }
+
+  @if $mobile {
+    @include mobile {
+      #{$property}: wv-375($mobile);
+    }
+  }
+}
+
+@function apply-wv($values, $wv-function) {
+  $result: ();
+
+  @each $value in $values {
+    $transformed-value: meta.call($wv-function, $value);
+    $result: list.append($result, $transformed-value, space);
+  }
+
+  @return $result;
+}
+
+@mixin responsive-spacing($property, $normal, $laptop, $tablet, $mobile) {
+  @if $normal {
+    #{$property}: #{apply-wv($normal, wv-1600)};
+  }
+
+  @if $laptop {
+    @include laptop {
+      #{$property}: #{apply-wv($laptop, wv-1200)};
+    }
+  }
+
+  @if $tablet {
+    @include tablet-pro {
+      #{$property}: #{apply-wv($tablet, wv-768)};
+    }
+
+    @include tablet {
+      #{$property}: #{apply-wv($tablet, wv-768)};
+    }
+  }
+
+  @if $mobile {
+    @include mobile {
+      #{$property}: #{apply-wv($mobile, wv-375)};
+    }
+  }
+}
+
+@mixin non-responsive-property($property, $normal, $laptop, $tablet, $mobile) {
+  #{$property}: $normal;
+
+  @include laptop {
+    #{$property}: $laptop;
+  }
+
+  @include tablet-pro {
+    #{$property}: $tablet;
+  }
+
+  @include tablet {
+    #{$property}: $tablet;
+  }
+
+  @include mobile {
+    #{$property}: $mobile;
+  }
+}
