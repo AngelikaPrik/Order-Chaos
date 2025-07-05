@@ -5,7 +5,6 @@ import { usePathname } from 'next/navigation'
 export default function Template({ children }: { children: React.ReactNode }) {
   const pathname = usePathname()
   return (
-    // eslint-disable-next-line prettier/prettier
     <AnimatePresence mode="popLayout">
       <motion.main
         key={pathname}
