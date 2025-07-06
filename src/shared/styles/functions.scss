@@ -1,0 +1,49 @@
+@use 'sass:math';
+@use 'sass:string';
+
+$vp-375: 375px;
+$vp-768: 768px;
+$vp-1024: 1024px;
+$vp-1200: 1200px;
+$vp-1600: 1600px;
+$vp-1920: 1920px;
+
+@function wv-1920($size-in-px) {
+  @if $size-in-px ==0 {
+    @return $size-in-px;
+  }
+
+  @return math.div($size-in-px, $vp-1920) * 100vw;
+}
+
+@function wv-1600($size-in-px) {
+  @if $size-in-px ==0 {
+    @return $size-in-px;
+  }
+
+  @return math.div($size-in-px, $vp-1600) * 100vw;
+}
+
+@function wv-1200($size-in-px) {
+  @if $size-in-px ==0 {
+    @return $size-in-px;
+  }
+
+  @return math.div($size-in-px, $vp-1200) * 100vw;
+}
+
+@function wv-768($size-in-px) {
+  @if $size-in-px ==0 {
+    @return $size-in-px;
+  }
+
+  @return math.div($size-in-px, $vp-768) * 100vw;
+}
+
+@function wv-375($size-in-px) {
+  @if $size-in-px ==0 {
+    @return $size-in-px;
+  }
+
+  @return math.div($size-in-px, $vp-375) * 100vw;
+}

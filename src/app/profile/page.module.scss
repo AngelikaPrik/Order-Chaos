@@ -1,3 +1,6 @@
+@use '@/shared/styles/mixins' as *;
+@use '@/shared/styles/variables' as *;
+
 .section {
   width: 100vw;
   height: 100vh;
@@ -8,6 +11,67 @@
 }
 
 .container {
-  max-width: 800px;
-  height: 100%;
+  background: rgba($color: $yellow, $alpha: 0.1);
+  height: fit-content;
+  @include responsive-property(border-radius, 20px, 20px, 20px, 20px);
+  @include responsive-property(margin, 30px, 30px, 30px, 30px);
+  @include responsive-property(width, 1080px, 900px, 600px, 300px);
+}
+
+.wrapper {
+  border-radius: inherit;
+  outline: 3px dashed $green;
+  display: flex;
+  flex-direction: column;
+  @include responsive-property(margin, 8px, 8px, 8px, 8px);
+  @include responsive-property(padding, 30px, 30px, 30px, 30px);
+  @include responsive-property(gap, 30px, 30px, 30px, 30px);
+}
+
+.title {
+  text-align: center;
+}
+
+.content {
+  display: flex;
+  justify-content: space-between;
+}
+
+.profile {
+  width: 40%;
+  background: rgba($color: $darkGreen, $alpha: 0.1);
+  display: flex;
+  flex-direction: column;
+  @include responsive-property(row-gap, 20px, 20px, 20px, 20px);
+  @include responsive-property(border-radius, 10px, 10px, 10px, 10px);
+  @include responsive-property(padding, 16px, 16px, 16px, 16px);
+}
+
+.nickname {
+  display: flex;
+  @include responsive-property(column-gap, 16px, 16px, 16px, 16px);
+
+  img {
+    outline: 1px dashed $black;
+    @include responsive-property(border-radius, 10px, 10px, 10px, 10px);
+  }
+}
+
+.status {
+  display: flex;
+  flex-direction: column;
+  @include responsive-property(row-gap, 5px, 5px, 5px, 5px);
+  &_text {
+    background: $white;
+    border-radius: 0px 20px 10px 20px;
+    @include responsive-property(padding, 10px, 10px, 10px, 10px);
+  }
+
+  &_edit {
+    color: $white;
+  }
+}
+
+.details {
+  width: 55%;
 }

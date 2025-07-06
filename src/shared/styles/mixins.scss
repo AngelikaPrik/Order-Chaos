@@ -1,7 +1,7 @@
 @use 'sass:map';
 @use 'sass:meta';
 @use 'sass:list';
-@use 'functions' as *;
+@use './functions.scss' as *;
 
 $breakpoints: (
   'mobile': '(min-width: 220px) and (max-width: 540px)',
