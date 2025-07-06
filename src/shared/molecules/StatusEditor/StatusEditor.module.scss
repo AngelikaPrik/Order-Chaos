@@ -1,0 +1,19 @@
+@use '@/shared/styles/mixins' as *;
+@use '@/shared/styles/variables' as *;
+
+.status {
+  display: flex;
+  flex-direction: column;
+  @include responsive-property(row-gap, 5px, 5px, 5px, 5px);
+
+  &_text {
+    background: $white;
+    border-radius: 0px 20px 10px 20px;
+    @include responsive-property(padding, 10px, 10px, 10px, 10px);
+  }
+
+  &_edit {
+    color: $white;
+    cursor: pointer;
+  }
+}

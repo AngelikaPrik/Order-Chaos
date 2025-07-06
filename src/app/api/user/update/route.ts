@@ -8,11 +8,14 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
   }
 
-  const { name } = await req.json()
+  const { name, status } = await req.json()
 
   const updatedUser = await prisma.user.update({
     where: { email: session.user.email },
-    data: { name },
+    data: {
+      ...(name && { name }),
+      ...(status && { status }),
+    },
   })
 
   return NextResponse.json({ success: true, user: updatedUser })

@@ -11,6 +11,7 @@ interface IInput {
   disabled?: boolean
   required?: boolean
   autoFocus?: boolean
+  classnames?: string
 }
 
 const Input = ({
@@ -23,6 +24,7 @@ const Input = ({
   disabled = false,
   required = false,
   autoFocus = false,
+  classnames = '',
 }: IInput) => {
   return (
     <input
@@ -35,7 +37,7 @@ const Input = ({
       disabled={disabled}
       required={required}
       autoFocus={autoFocus}
-      className={styles.input}
+      className={`${styles.input} ${classnames}`}
     />
   )
 }
